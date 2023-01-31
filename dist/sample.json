@@ -1,0 +1,75 @@
+[
+    {
+        "id": 1,
+        "legalitas": [
+            {
+                "jenis_dokumen": "SHM",
+                "nomor": "123",
+                "tanggal": "2019-01-01"
+            },
+            {
+                "jenis_dokumen": "SHGB",
+                "nomor": "123",
+                "tanggal": "2019-01-01"
+            },
+            {
+                "jenis_dokumen": "SHM",
+                "nomor": "345",
+                "tanggal": "2019-01-01"
+            }
+        ],
+        "lebar_jalan": 10,
+        "lebar_depan": 5,
+        "data_nilai": [
+            {
+                "jenis": "tanah",
+                "rincian": "tanah depan",
+                "nilai": "2000000"
+            },
+            {
+                "jenis": "bangunan",
+                "rincian": "bangunan kantor",
+                "nilai": "1000000"
+            },
+            {
+                "jenis": "tanah",
+                "rincian": "tanah belakang",
+                "nilai": "500000"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "legalitas": [
+            {
+                "jenis_dokumen": "SHM",
+                "nomor": "123",
+                "tanggal": "1990-01-01"
+            },
+            {
+                "jenis_dokumen": "SHM",
+                "nomor": "123",
+                "tanggal": "1990-01-01"
+            }
+        ],
+        "lebar_jalan": 6,
+        "lebar_depan": 8,
+        "data_nilai": [
+            {
+                "jenis": "tanah",
+                "rincian": "tanah depan",
+                "nilai": "2000000"
+            },
+            {
+                "jenis": "bangunan",
+                "rincian": "bangunan kantor",
+                "nilai": "1000000"
+            },
+            {
+                "jenis": "tanah",
+                "rincian": "tanah belakang",
+                "nilai": "500000"
+            }
+        ]
+    }
+]
