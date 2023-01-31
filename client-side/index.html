@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Excel to JSON</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <script type="text/javascript" src="https://cdn.sheetjs.com/xlsx-0.19.2/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+    <style>
+        div {
+            width: "device-width"
+        }
+    </style>
+    
+    <!-- Header Excel 2 JSON -->
+    <h1>Excel 2 JSON</h1>
+    <!-- Create File Form -->
+    <div>
+        <input type="file" name="file" id="fileInput">
+    </div>
+
+    <!-- pre result -->
+    <div id="result"></div>
+</body>
+<script>
+const mergeObjects = (json) => {
+    let result = {};
+    json.forEach(item => {
+        Object.keys(item).forEach(key => {
+            if (!result[key]) {
+                result[key] = [];
+            }
+            result[key].push(item[key]);
+        });
+    });
+    Object.keys(result).forEach(key => {
+        if (Array.isArray(result[key]) && result[key].length === 1) {
+            result[key] = result[key][0];
+        }
+    });
+    return result;
+};
+const unflattenDotJson = (data) => {
+    const result = {};
+    for (const i in data) {
+        const keys = i.split('.');
+        keys.reduce((r, e, j) => {
+            return r[e] || (r[e] = isNaN(Number(keys[j + 1])) ? (keys.length - 1 === j ? data[i] : {}) : []);
+        }, result);
+    }
+    return result;
+};
+const reformatChildObject = (obj) => {
+    const result = {};
+    for (const key in obj) {
+        if (typeof obj[key] === 'object') {
+            const keys = Object.keys(obj[key]);
+            const values = Object.values(obj[key]);
+            const length = values[0].length;
+            if (!values.every(Array.isArray) || !values.every(v => v.length === length)) {
+                throw new Error('Invalid data');
+            }
+            const temp = [];
+            for (let j = 0; j < length; j++) {
+                const obj = {};
+                for (let k = 0; k < keys.length; k++) {
+                    obj[keys[k]] = values[k][j];
+                }
+                temp.push(obj);
+            }
+            result[key] = temp;
+        }
+        else {
+            result[key] = obj[key];
+        }
+    }
+    return result;
+};
+</script>
+<script>
+    const fileInput = document.getElementById('fileInput');
+    const resultPre = document.getElementById('result');
+
+    fileInput.addEventListener('change', async () => {
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+        reader.readAsArrayBuffer(file);
+
+        reader.onload = async (e) => {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, {type: 'array'});
+            const xlData = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
+            const mergedData = mergeObjects(xlData);
+            const unflattenData = unflattenDotJson(mergedData);
+            const reformatData = reformatChildObject(unflattenData);
+            console.log(reformatData);
+            resultPre.innerHTML = JSON.stringify(reformatData);
+        };
+    });
+</script>
+</html>

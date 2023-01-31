@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.unflattenDotJson = exports.mergeObjects = exports.mergeWithSameID = exports.excelToJson = void 0;
+exports.reformatChildObject = exports.unflattenDotJson = exports.mergeObjects = exports.mergeWithSameID = exports.excelToJson = void 0;
 const XLSX = __importStar(require("xlsx"));
 const excelToJson = (filePath) => {
     const workbook = XLSX.readFile(filePath);
@@ -76,7 +76,7 @@ const mergeObjects = (json) => {
             result[key] = result[key][0];
         }
     });
-    return [result];
+    return result;
 };
 exports.mergeObjects = mergeObjects;
 const unflattenDotJson = (data) => {
@@ -90,11 +90,40 @@ const unflattenDotJson = (data) => {
     return result;
 };
 exports.unflattenDotJson = unflattenDotJson;
-const xlData = (0, exports.excelToJson)('sample.xlsx');
+const reformatChildObject = (obj) => {
+    const result = {};
+    for (const key in obj) {
+        if (typeof obj[key] === 'object') {
+            const keys = Object.keys(obj[key]);
+            const values = Object.values(obj[key]);
+            const length = values[0].length;
+            if (!values.every(Array.isArray) || !values.every(v => v.length === length)) {
+                throw new Error('Invalid data');
+            }
+            const temp = [];
+            for (let j = 0; j < length; j++) {
+                const obj = {};
+                for (let k = 0; k < keys.length; k++) {
+                    obj[keys[k]] = values[k][j];
+                }
+                temp.push(obj);
+            }
+            result[key] = temp;
+        }
+        else {
+            result[key] = obj[key];
+        }
+    }
+    return result;
+};
+exports.reformatChildObject = reformatChildObject;
+const xlData = (0, exports.excelToJson)('client-side/sample.xlsx');
 console.log(xlData);
 const mergedData = (0, exports.mergeObjects)(xlData);
 console.log(mergedData);
-const unflattenData = (0, exports.unflattenDotJson)(mergedData[0]);
+const unflattenData = (0, exports.unflattenDotJson)(mergedData);
 console.log(unflattenData);
+const reformatData = (0, exports.reformatChildObject)(unflattenData);
+console.log(reformatData);
 console.log("OK");
 //# sourceMappingURL=index.js.map

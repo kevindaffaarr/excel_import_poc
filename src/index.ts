@@ -61,7 +61,7 @@ export const mergeWithSameID = (data: any[]): any[] => {
  * [{"id":1, "name":"Josh"},{"id":1,"hobby":"swimming"},{"id":1,"hobby":"soccer"},{"id":1,"name":"john"}]
  * [{"id":1, "name":["Josh","john"],"hobby":["swimming","soccer"]}]
  */
-export const mergeObjects = (json: any[]): any[] => {
+export const mergeObjects = (json: any[]): object => {
     let result:any = {};
     json.forEach(item => {
         Object.keys(item).forEach(key => {
@@ -76,7 +76,7 @@ export const mergeObjects = (json: any[]): any[] => {
             result[key] = result[key][0];
         }
     });
-    return [result];
+    return result;
 }
 
 /**
@@ -84,7 +84,7 @@ export const mergeObjects = (json: any[]): any[] => {
  * @param data - json with dot notation key
  * @returns 
  */
-export const unflattenDotJson = (data: any): any => {
+export const unflattenDotJson = (data: any): object => {
     const result: any = {};
     for (const i in data) {
         const keys = i.split('.');
@@ -95,12 +95,48 @@ export const unflattenDotJson = (data: any): any => {
     return result;
 }
 
+// Reformat the child object from array each column to array of object
+// Example:
+// from {"legalitas": {"jenis_dokumen": ["SHM","SHGB","SHM"],"nomor": [123,342,354],"tanggal": [43811,43616,43700]}},
+// to {"legalitas": [{"jenis_dokumen": "SHM","nomor": 123,"tanggal": 43811},{"jenis_dokumen": "SHGB","nomor": 342,"tanggal": 43616},{"jenis_dokumen": "SHM","nomor": 354,"tanggal": 43700}]}
+export const reformatChildObject = (obj: any): object => {
+    const result: any = {};
+    for (const key in obj) {
+        if (typeof obj[key] === 'object') {
+            const keys = Object.keys(obj[key]);
+            const values:any[] = Object.values(obj[key]);
+            const length = values[0].length;
+            
+            // check does every values are array
+            if (!values.every(Array.isArray) || !values.every(v => v.length === length)) {
+                // throw error
+                throw new Error('Invalid data');
+            }
+            
+            const temp: any[] = [];
+            for (let j = 0; j < length; j++) {
+                const obj: any = {};
+                for (let k = 0; k < keys.length; k++) {
+                    obj[keys[k]] = values[k][j];
+                }
+                temp.push(obj);
+            }
+            result[key] = temp;
+        } else {
+            result[key] = obj[key];
+        }
+    }
+    return result;
+}
+
 // call functions
-const xlData = excelToJson('sample.xlsx');
+const xlData = excelToJson('client-side/sample.xlsx');
 console.log(xlData);
 const mergedData = mergeObjects(xlData);
 console.log(mergedData);
-const unflattenData = unflattenDotJson(mergedData[0]);
+const unflattenData = unflattenDotJson(mergedData);
 console.log(unflattenData);
+const reformatData = reformatChildObject(unflattenData);
+console.log(reformatData);
 
 console.log("OK");
