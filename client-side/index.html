@@ -100,33 +100,27 @@ const reformatChildObject = (obj) => {
                 } else if (typeof childObj[childKey] === 'object') {
                     const child2Obj = childObj[childKey];
                     Object.keys(child2Obj).forEach(child2Key => {
-                        if (Array.isArray(child2Obj[child2Key])) {
-                            const child2Arr = child2Obj[child2Key];
-                            child2Arr.forEach((item, index) => {
+                        // asumsi: child2Obj[child2Key] selalu array karena max level 3, contoh: dp.spesifikasi.jenis
+                        child2Obj[child2Key].forEach((child2KeyVal, index2KeyValObj) => {
+                            const child2KeyValArrObj = convertStringArray(child2KeyVal);
+                            child2KeyValArrObj.forEach((child2KeyValArrObjItem, index2KeyValObjArr) => {
                                 if (!result[key]) {
                                     result[key] = [];
                                 }
-                                if (!result[key][index]) {
-                                    result[key][index] = {};
+                                if (!result[key][index2KeyValObj]) {
+                                    result[key][index2KeyValObj] = {};
                                 }
-                                if (!result[key][index][childKey]) {
-                                    result[key][index][childKey] = [];
+                                if (!result[key][index2KeyValObj][childKey]) {
+                                    result[key][index2KeyValObj][childKey] = [];
                                 }
-                                result[key][index][childKey].push({[child2Key]: item})
+                                if (!result[key][index2KeyValObj][childKey][index2KeyValObjArr]) {
+                                    result[key][index2KeyValObj][childKey][index2KeyValObjArr] = {};
+                                }
+                                result[key][index2KeyValObj][childKey][index2KeyValObjArr][child2Key] = child2KeyValArrObjItem;
                             });
-                        } else {
-                            if (!result[key]) {
-                                result[key] = [];
-                            }
-                            if (!result[key][0]) {
-                                result[key][0] = {};
-                            }
-                            if (!result[key][0][childKey]) {
-                                result[key][0][childKey] = [];
-                            }
-                            result[key][0][childKey].push({[child2Key]: child2Obj[child2Key]});
-                        }
+                        });
                     });
+                    
                 } else {
                     if (!result[key]) {
                         result[key] = [];
@@ -146,30 +140,22 @@ const reformatChildObject = (obj) => {
  * Example: "array(1,2,3)" to [1,2,3]
  * Retain the variable type whether it is a number or string
  */
-const convertStringArray = (obj) => {
-    // iterate every value inside multilevel obj
-    Object.keys(obj).forEach(key => {
-        // if value is an object, iterate again
-        if (typeof obj[key] === 'object') {
-            convertStringArray(obj[key]);
-        } else {
-            // if value is a string, check if it is an array
-            if (typeof obj[key] === 'string') {
-                // if value is an array, convert it to true array
-                if (obj[key].includes('array')) {
-                    const arr = obj[key].replace('array(', '').replace(')', '').split(',');
-                    obj[key] = arr.map(item => {
-                        if (isNaN(Number(item))) {
-                            return item;
-                        } else {
-                            return Number(item);
-                        }
-                    });
+const convertStringArray = (str) => {
+    // if value is a string, check if it is an array
+    if (typeof str === 'string') {
+        // if value is an array, convert it to true array
+        if (str.includes('array')) {
+            const arr = str.replace('array(', '').replace(')', '').split(',');
+            str = arr.map(item => {
+                if (isNaN(Number(item))) {
+                    return item;
+                } else {
+                    return Number(item);
                 }
-            }
+            });
         }
-    });
-    return obj;
+    }
+    return str;
 }
 </script>
 

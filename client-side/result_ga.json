@@ -78,28 +78,24 @@
             "catatan": 0,
             "spesifikasi": [
                 {
-                    "jenis": [
-                        "Tahun Pembuatan",
-                        "Negara",
-                        "Panjang Kapal",
-                        "Lebar Kapal"
-                    ]
+                    "jenis": "Tahun Pembuatan",
+                    "satuan": "-",
+                    "value": 2020
                 },
                 {
-                    "satuan": [
-                        "-",
-                        "-",
-                        "m",
-                        "m"
-                    ]
+                    "jenis": "Negara",
+                    "satuan": "-",
+                    "value": "Indonesia"
                 },
                 {
-                    "value": [
-                        2020,
-                        "Indonesia",
-                        11,
-                        9
-                    ]
+                    "jenis": "Panjang Kapal",
+                    "satuan": "m",
+                    "value": 11
+                },
+                {
+                    "jenis": "Lebar Kapal",
+                    "satuan": "m",
+                    "value": 9
                 }
             ]
         },
@@ -113,28 +109,24 @@
             "catatan": 0,
             "spesifikasi": [
                 {
-                    "jenis": [
-                        "Tahun Pembuatan",
-                        "Negara",
-                        "Panjang Kapal",
-                        "Lebar Kapal"
-                    ]
+                    "jenis": "Tahun Pembuatan",
+                    "satuan": "-",
+                    "value": 2021
                 },
                 {
-                    "satuan": [
-                        "-",
-                        "-",
-                        "m",
-                        "m"
-                    ]
+                    "jenis": "Negara",
+                    "satuan": "-",
+                    "value": "Singapore"
                 },
                 {
-                    "value": [
-                        2021,
-                        "Singapore",
-                        22,
-                        8
-                    ]
+                    "jenis": "Panjang Kapal",
+                    "satuan": "m",
+                    "value": 22
+                },
+                {
+                    "jenis": "Lebar Kapal",
+                    "satuan": "m",
+                    "value": 8
                 }
             ]
         },
@@ -148,28 +140,24 @@
             "catatan": 0,
             "spesifikasi": [
                 {
-                    "jenis": [
-                        "Tahun Pembuatan",
-                        "Negara",
-                        "Panjang Kapal",
-                        "Lebar Kapal"
-                    ]
+                    "jenis": "Tahun Pembuatan",
+                    "satuan": "-",
+                    "value": 2022
                 },
                 {
-                    "satuan": [
-                        "-",
-                        "-",
-                        "m",
-                        "m"
-                    ]
+                    "jenis": "Negara",
+                    "satuan": "-",
+                    "value": "Hongkong"
                 },
                 {
-                    "value": [
-                        2022,
-                        "Hongkong",
-                        33,
-                        7
-                    ]
+                    "jenis": "Panjang Kapal",
+                    "satuan": "m",
+                    "value": 33
+                },
+                {
+                    "jenis": "Lebar Kapal",
+                    "satuan": "m",
+                    "value": 7
                 }
             ]
         }
