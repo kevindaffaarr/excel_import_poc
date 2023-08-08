@@ -24,6 +24,14 @@
     <div id="result"></div>
 </body>
 <script>
+/**
+ * Merge Object with same keys to array
+ * @param json - json from excel
+ * @returns
+ * Example:
+ * [{"id":1, "name":"Josh"},{"id":1,"hobby":"swimming"},{"id":1,"hobby":"soccer"},{"id":1,"name":"john"}]
+ * [{"id":1, "name":["Josh","john"],"hobby":["swimming","soccer"]}]
+ */
 const mergeObjects = (json) => {
     let result = {};
     json.forEach(item => {
@@ -41,6 +49,12 @@ const mergeObjects = (json) => {
     });
     return result;
 };
+
+/**
+ * Unflatten Dot Notation JSON
+ * @param data - json with dot notation key
+ * @returns 
+ */
 const unflattenDotJson = (data) => {
     const result = {};
     for (const i in data) {
@@ -51,34 +65,53 @@ const unflattenDotJson = (data) => {
     }
     return result;
 };
+
+/**
+ * Reformat JSON from like
+ * {"legalitas":{"jenis":[1,2,3,4],"nomor":[1,2,3,4],"tanggal":[1,2,3,4]}},
+ * {"risiko": {"banjir":1, "kebakaran":2, "gempa":3, "tsunami":4}},
+ * {"dp":{"discount":[1,2,3],"jenisdata":["penawaran","transaksi","penawaran"],"spesifikasi":{jenis:["panjang","lebar"],"satuan":["m","m"],"value":[1,2,3]}}}
+ * to:
+ * {"legalitas":[{"jenis":1,"nomor":1,"tanggal":1},{"jenis":2,"nomor":2,"tanggal":2},{"jenis":3,"nomor":3,"tanggal":3},{"jenis":4,"nomor":4,"tanggal":4}]}
+ * {"risiko":{"banjir":1},{"kebakaran":2},{"gempa":3},{"tsunami":4}}
+ * {"dp":[{"discount":1,"jenisdata":"penawaran","spesifikasi":[{"jenis":"panjang","satuan":"m","value":1},{"jenis":"lebar","satuan":"m","value":2}]},{"discount":2,"jenisdata":"transaksi","spesifikasi":[{"jenis":"panjang","satuan":"m","value":1},{"jenis":"lebar","satuan":"m","value":2}]},{"discount":3,"jenisdata":"penawaran","spesifikasi":[{"jenis":"panjang","satuan":"m","value":1},{"jenis":"lebar","satuan":"m","value":2}]}]}
+ */
 const reformatChildObject = (obj) => {
     const result = {};
-    for (const key in obj) {
-        if (typeof obj[key] === 'object') {
-            const keys = Object.keys(obj[key]);
-            const values = Object.values(obj[key]);
-            const length = values[0].length;
-            if (!values.every(Array.isArray) || !values.every(v => v.length === length)) {
-                throw new Error('Invalid data');
-            }
-            const temp = [];
-            for (let j = 0; j < length; j++) {
-                const obj = {};
-                for (let k = 0; k < keys.length; k++) {
-                    obj[keys[k]] = values[k][j];
+
+    Object.keys(obj).forEach(key => {
+        if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
+            const childObj = obj[key];
+            Object.keys(childObj).forEach(childKey => {
+                if (Array.isArray(childObj[childKey])) {
+                    const childArr = childObj[childKey];
+                    childArr.forEach((item, index) => {
+                        if (!result[key]) {
+                            result[key] = [];
+                        }
+                        if (!result[key][index]) {
+                            result[key][index] = {};
+                        }
+                        result[key][index][childKey] = item;
+                    });
+                } else {
+                    if (!result[key]) {
+                        result[key] = [];
+                    }
+                    result[key].push({[childKey]: childObj[childKey]});
                 }
-                temp.push(obj);
-            }
-            result[key] = temp;
-        }
-        else {
+            });
+        } else {
             result[key] = obj[key];
         }
-    }
+    });
+
     return result;
 };
 </script>
+
 <script>
+    const sheetName = 'parsed';
     const fileInput = document.getElementById('fileInput');
     const resultPre = document.getElementById('result');
 
@@ -90,11 +123,10 @@ const reformatChildObject = (obj) => {
         reader.onload = async (e) => {
             const data = new Uint8Array(e.target.result);
             const workbook = XLSX.read(data, {type: 'array'});
-            const xlData = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
+            const xlData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
             const mergedData = mergeObjects(xlData);
             const unflattenData = unflattenDotJson(mergedData);
             const reformatData = reformatChildObject(unflattenData);
-            console.log(reformatData);
             resultPre.innerHTML = JSON.stringify(reformatData);
         };
     });
