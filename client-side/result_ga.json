@@ -1,0 +1,211 @@
+{
+    "objek": [
+        {
+            "jenis": 5
+        },
+        {
+            "kategori": "TB"
+        }
+    ],
+    "bangunan": [
+        {
+            "pemanfaatan": "Rumah Tinggal"
+        }
+    ],
+    "djkn": [
+        {
+            "waktu_ekspos": 7
+        },
+        {
+            "diskon_likuidasi": 0.4
+        }
+    ],
+    "risiko": [
+        {
+            "marketability": 2
+        }
+    ],
+    "legalitas": [
+        {
+            "jenis": "asd",
+            "nomor": 1101,
+            "nama_pemilik": "Putra",
+            "tgl_terbit": 43831,
+            "tgl_expired": 43831,
+            "luas_legalitas": 100,
+            "satuan": 2,
+            "keterangan": "Ket1"
+        },
+        {
+            "jenis": "asd",
+            "nomor": 1102,
+            "nama_pemilik": "Putra",
+            "tgl_terbit": 43832,
+            "tgl_expired": 43832,
+            "luas_legalitas": 200,
+            "satuan": 1,
+            "keterangan": "Ket2"
+        },
+        {
+            "jenis": "asd",
+            "nomor": 1103,
+            "nama_pemilik": "Karin",
+            "tgl_terbit": 43833,
+            "tgl_expired": 43833,
+            "luas_legalitas": 300,
+            "satuan": 4,
+            "keterangan": "Ket3"
+        },
+        {
+            "jenis": "asd",
+            "nomor": 1104,
+            "nama_pemilik": "Karin",
+            "tgl_terbit": 43834,
+            "tgl_expired": 43834,
+            "luas_legalitas": 400,
+            "satuan": 5,
+            "keterangan": "Ket4"
+        }
+    ],
+    "dp": [
+        {
+            "jenisobjek": 0,
+            "jenisdata": 0,
+            "tgl_penawaran": 0,
+            "harga": 0,
+            "discount": 0,
+            "nilaiobjek": 0,
+            "catatan": 0,
+            "spesifikasi": [
+                {
+                    "jenis": [
+                        "Tahun Pembuatan",
+                        "Negara",
+                        "Panjang Kapal",
+                        "Lebar Kapal"
+                    ]
+                },
+                {
+                    "satuan": [
+                        "-",
+                        "-",
+                        "m",
+                        "m"
+                    ]
+                },
+                {
+                    "value": [
+                        2020,
+                        "Indonesia",
+                        11,
+                        9
+                    ]
+                }
+            ]
+        },
+        {
+            "jenisobjek": 0,
+            "jenisdata": 0,
+            "tgl_penawaran": 0,
+            "harga": 0,
+            "discount": 0,
+            "nilaiobjek": 0,
+            "catatan": 0,
+            "spesifikasi": [
+                {
+                    "jenis": [
+                        "Tahun Pembuatan",
+                        "Negara",
+                        "Panjang Kapal",
+                        "Lebar Kapal"
+                    ]
+                },
+                {
+                    "satuan": [
+                        "-",
+                        "-",
+                        "m",
+                        "m"
+                    ]
+                },
+                {
+                    "value": [
+                        2021,
+                        "Singapore",
+                        22,
+                        8
+                    ]
+                }
+            ]
+        },
+        {
+            "jenisobjek": 0,
+            "jenisdata": 0,
+            "tgl_penawaran": 0,
+            "harga": 0,
+            "discount": 0,
+            "nilaiobjek": 0,
+            "catatan": 0,
+            "spesifikasi": [
+                {
+                    "jenis": [
+                        "Tahun Pembuatan",
+                        "Negara",
+                        "Panjang Kapal",
+                        "Lebar Kapal"
+                    ]
+                },
+                {
+                    "satuan": [
+                        "-",
+                        "-",
+                        "m",
+                        "m"
+                    ]
+                },
+                {
+                    "value": [
+                        2022,
+                        "Hongkong",
+                        33,
+                        7
+                    ]
+                }
+            ]
+        }
+    ],
+    "rinciannilai": [
+        {
+            "kategori": "Tanah",
+            "objek": "Tanah",
+            "luas": 1,
+            "satuan": 2,
+            "nilaipasar": 4000,
+            "nilailikuidasi": 7000
+        },
+        {
+            "kategori": "Bangunan",
+            "objek": "Rumah",
+            "luas": 2,
+            "satuan": 1,
+            "nilaipasar": 5000,
+            "nilailikuidasi": 8000
+        },
+        {
+            "kategori": "Sarana Pelengkap",
+            "objek": "Carport",
+            "luas": 3,
+            "satuan": 6,
+            "nilaipasar": 6,
+            "nilailikuidasi": 9
+        }
+    ],
+    "kesimpulan": [
+        {
+            "pasartotal": 9006
+        },
+        {
+            "likuidasitotal": 15009
+        }
+    ]
+}
