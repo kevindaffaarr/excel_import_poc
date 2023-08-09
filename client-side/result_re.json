@@ -1,170 +1,66 @@
 {
-    "objek": [
-        {
-            "jenis": 5
-        },
-        {
-            "kategori": "TB"
-        }
-    ],
-    "djkn": [
-        {
-            "status_imb": 2
-        },
-        {
-            "batas_tanah": 2
-        },
-        {
-            "elevasi": 2
-        },
-        {
-            "pelayanan_kebersihan": 2
-        },
-        {
-            "pos_security": 2
-        },
-        {
-            "sambungan_telepon": 2
-        },
-        {
-            "waktu_ekspos": 7
-        },
-        {
-            "diskon_likuidasi": 0.4
-        }
-    ],
-    "kondisiobjek": [
-        {
-            "bentuk_objek": 2
-        },
-        {
-            "luas_objek": 100
-        },
-        {
-            "frontage_menghadap": 2
-        },
-        {
-            "batas1": "jalan"
-        },
-        {
-            "batas2": "rumah 1"
-        },
-        {
-            "batas3": "rumah 2"
-        },
-        {
-            "batas4": "rumah 3"
-        },
-        {
-            "frontage_lebar": 15
-        },
-        {
-            "penguasaan": 2
-        },
-        {
-            "posisi": 2
-        },
-        {
-            "kondisitanah": 2
-        },
-        {
-            "interior": 2
-        },
-        {
-            "kdb": 60
-        },
-        {
-            "klb": 120
-        },
-        {
-            "kb": 5
-        },
-        {
-            "gsb": 4
-        },
-        {
-            "jarak_pusat_kota": 2
-        },
-        {
-            "jarak_jalan_utama": 100
-        },
-        {
-            "lebar_jalan": 8
-        },
-        {
-            "material_jalan": 2
-        },
-        {
-            "fasum_fasos": 2
-        },
-        {
-            "listrik": 2
-        },
-        {
-            "air": 2
-        }
-    ],
-    "bangunan": [
-        {
-            "pemanfaatan": "Rumah Tinggal"
-        },
-        {
-            "jumlah_lantai": 2
-        },
-        {
-            "tahun_bangun": 2020
-        },
-        {
-            "tahun_renovasi": 2023
-        },
-        {
-            "persentase_konstruksi": 1
-        }
-    ],
-    "risiko": [
-        {
-            "sutet": 0
-        },
-        {
-            "bts": 1
-        },
-        {
-            "helikopter": 0
-        },
-        {
-            "longsor": 1
-        },
-        {
-            "rob": 0
-        },
-        {
-            "banjir": 1
-        },
-        {
-            "sengketa": 0
-        },
-        {
-            "makam_dalam_objek": 1
-        },
-        {
-            "wakaf": 0
-        },
-        {
-            "tpu": 1
-        },
-        {
-            "tpa": 0
-        },
-        {
-            "hijau": 1
-        },
-        {
-            "kejahatan": 0
-        },
-        {
-            "marketability": 2
-        }
-    ],
+    "objek": {
+        "jenis": 5,
+        "kategori": "TB"
+    },
+    "djkn": {
+        "status_imb": 2,
+        "batas_tanah": 2,
+        "elevasi": 2,
+        "pelayanan_kebersihan": 2,
+        "pos_security": 2,
+        "sambungan_telepon": 2,
+        "waktu_ekspos": 7,
+        "diskon_likuidasi": 0.4
+    },
+    "kondisiobjek": {
+        "bentuk_objek": 2,
+        "luas_objek": 100,
+        "frontage_menghadap": 2,
+        "batas1": "jalan",
+        "batas2": "rumah 1",
+        "batas3": "rumah 2",
+        "batas4": "rumah 3",
+        "frontage_lebar": 15,
+        "penguasaan": 2,
+        "posisi": 2,
+        "kondisitanah": 2,
+        "interior": 2,
+        "kdb": 60,
+        "klb": 120,
+        "kb": 5,
+        "gsb": 4,
+        "jarak_pusat_kota": 2,
+        "jarak_jalan_utama": 100,
+        "lebar_jalan": 8,
+        "material_jalan": 2,
+        "fasum_fasos": 2,
+        "listrik": 2,
+        "air": 2
+    },
+    "bangunan": {
+        "pemanfaatan": "Rumah Tinggal",
+        "jumlah_lantai": 2,
+        "tahun_bangun": 2020,
+        "tahun_renovasi": 2023,
+        "persentase_konstruksi": 1
+    },
+    "risiko": {
+        "sutet": 0,
+        "bts": 1,
+        "helikopter": 0,
+        "longsor": 1,
+        "rob": 0,
+        "banjir": 1,
+        "sengketa": 0,
+        "makam_dalam_objek": 1,
+        "wakaf": 0,
+        "tpu": 1,
+        "tpa": 0,
+        "hijau": 1,
+        "kejahatan": 0,
+        "marketability": 2
+    },
     "legalitas": [
         {
             "jenis": 2,
@@ -397,30 +293,14 @@
             "nilailikuidasi": 9
         }
     ],
-    "kesimpulan": [
-        {
-            "pasartanah": 4000
-        },
-        {
-            "pasarbangunan": 5000
-        },
-        {
-            "pasarsarana": 6
-        },
-        {
-            "pasartotal": 9006
-        },
-        {
-            "likuidasitanah": 7000
-        },
-        {
-            "likuidasibangunan": 8000
-        },
-        {
-            "likuidasisarana": 9
-        },
-        {
-            "likuidasitotal": 15009
-        }
-    ]
+    "kesimpulan": {
+        "pasartanah": 4000,
+        "pasarbangunan": 5000,
+        "pasarsarana": 6,
+        "pasartotal": 9006,
+        "likuidasitanah": 7000,
+        "likuidasibangunan": 8000,
+        "likuidasisarana": 9,
+        "likuidasitotal": 15009
+    }
 }

@@ -1,30 +1,18 @@
 {
-    "objek": [
-        {
-            "jenis": 5
-        },
-        {
-            "kategori": "TB"
-        }
-    ],
-    "bangunan": [
-        {
-            "pemanfaatan": "Rumah Tinggal"
-        }
-    ],
-    "djkn": [
-        {
-            "waktu_ekspos": 7
-        },
-        {
-            "diskon_likuidasi": 0.4
-        }
-    ],
-    "risiko": [
-        {
-            "marketability": 2
-        }
-    ],
+    "objek": {
+        "jenis": 5,
+        "kategori": "TB"
+    },
+    "bangunan": {
+        "pemanfaatan": "Rumah Tinggal"
+    },
+    "djkn": {
+        "waktu_ekspos": 7,
+        "diskon_likuidasi": 0.4
+    },
+    "risiko": {
+        "marketability": 2
+    },
     "legalitas": [
         {
             "jenis": "asd",
@@ -188,12 +176,8 @@
             "nilailikuidasi": 9
         }
     ],
-    "kesimpulan": [
-        {
-            "pasartotal": 9006
-        },
-        {
-            "likuidasitotal": 15009
-        }
-    ]
+    "kesimpulan": {
+        "pasartotal": 9006,
+        "likuidasitotal": 15009
+    }
 }

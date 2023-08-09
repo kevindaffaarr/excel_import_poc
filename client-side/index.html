@@ -78,6 +78,7 @@ const unflattenDotJson = (data) => {
  */
 const reformatChildObject = (obj) => {
     const result = {};
+    console.log(obj);
 
     Object.keys(obj).forEach(key => {
         if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
@@ -123,9 +124,9 @@ const reformatChildObject = (obj) => {
                     
                 } else {
                     if (!result[key]) {
-                        result[key] = [];
+                        result[key] = {};
                     }
-                    result[key].push({[childKey]: childObj[childKey]});
+                    result[key][childKey] = childObj[childKey];
                 }
             });
         } else {
@@ -133,6 +134,7 @@ const reformatChildObject = (obj) => {
         }
     });
 
+    console.log(result);
     return result;
 };
 
