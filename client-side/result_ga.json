@@ -1,7 +1,193 @@
 {
-    "objek": {
-        "jenis": 5,
-        "kategori": "TB"
+    "tipeImport": "GA",
+    "capObject": {
+        "kriteriaAgunanId": 1,
+        "jenisObjekId": 14
+    },
+    "dokumenLegalitasGA": [
+        {
+            "jenisLegalitas": "Grosse Akta",
+            "nomorLegalitas": "1234/GA/2022",
+            "tanggalTerbit": "2015-12-30T00:00:00.000Z",
+            "tanggalKadaluarsa": "2050-12-30T00:00:00.000Z",
+            "jumlahUnit": 12,
+            "satuanUnit": "-",
+            "namaPemilik": "PT Onasis",
+            "catatan": "Ket 1"
+        },
+        {
+            "jenisLegalitas": "Sertifikat BKI",
+            "nomorLegalitas": "555/BKI/2022",
+            "tanggalTerbit": "2003-06-04T00:00:00.000Z",
+            "tanggalKadaluarsa": "2065-06-04T00:00:00.000Z",
+            "jumlahUnit": 56,
+            "satuanUnit": "m",
+            "namaPemilik": "PT Onitsuka",
+            "catatan": "Ket 2"
+        },
+        {
+            "jenisLegalitas": "Sertifikat Keselamatan",
+            "nomorLegalitas": "4/SK/2023",
+            "tanggalTerbit": "1990-12-05T00:00:00.000Z",
+            "tanggalKadaluarsa": "2080-12-05T00:00:00.000Z",
+            "jumlahUnit": 9,
+            "satuanUnit": "m2",
+            "namaPemilik": "PT Osram",
+            "catatan": "Ket 3"
+        }
+    ],
+    "spesifikasiObjekGA": [
+        {
+            "spesifikasiObjekId": 2,
+            "satuanId": 2,
+            "keterangan": 1
+        },
+        {
+            "spesifikasiObjekId": 5,
+            "satuanId": 5,
+            "keterangan": 2
+        },
+        {
+            "spesifikasiObjekId": 6,
+            "satuanId": 4,
+            "keterangan": 3
+        },
+        {
+            "spesifikasiObjekId": 7,
+            "satuanId": 7,
+            "keterangan": 4
+        }
+    ],
+    "dataPasarGA": [
+        {
+            "jenisObjekId": 13,
+            "jenisDataId": 2,
+            "currencyId": 3,
+            "tanggalTransaksi": "2055-12-05T00:00:00.000Z",
+            "nominal": 20000,
+            "discount": 0.1,
+            "indikasiNilai": 18000,
+            "catatanObjek": 0,
+            "spesifikasiObjek": [
+                {
+                    "spesifikasiObjekId": 1,
+                    "satuanId": 1,
+                    "keterangan": 2020
+                },
+                {
+                    "spesifikasiObjekId": 2,
+                    "satuanId": 1,
+                    "keterangan": "Indonesia"
+                },
+                {
+                    "spesifikasiObjekId": 3,
+                    "satuanId": 4,
+                    "keterangan": 11
+                },
+                {
+                    "spesifikasiObjekId": 4,
+                    "satuanId": 4,
+                    "keterangan": 9
+                }
+            ]
+        },
+        {
+            "jenisObjekId": 15,
+            "jenisDataId": 1,
+            "currencyId": 5,
+            "tanggalTransaksi": "2053-12-05T00:00:00.000Z",
+            "nominal": 15000,
+            "discount": 0.2,
+            "indikasiNilai": 12000,
+            "catatanObjek": 0,
+            "spesifikasiObjek": [
+                {
+                    "spesifikasiObjekId": 1,
+                    "satuanId": 1,
+                    "keterangan": 2021
+                },
+                {
+                    "spesifikasiObjekId": 2,
+                    "satuanId": 1,
+                    "keterangan": "Singapore"
+                },
+                {
+                    "spesifikasiObjekId": 3,
+                    "satuanId": 4,
+                    "keterangan": 22
+                },
+                {
+                    "spesifikasiObjekId": 4,
+                    "satuanId": 4,
+                    "keterangan": 8
+                }
+            ]
+        },
+        {
+            "jenisObjekId": 17,
+            "jenisDataId": 2,
+            "tanggalTransaksi": "2056-12-05T00:00:00.000Z",
+            "nominal": 16000,
+            "discount": 0.3,
+            "indikasiNilai": 11200,
+            "catatanObjek": 0,
+            "spesifikasiObjek": [
+                {
+                    "spesifikasiObjekId": 1,
+                    "satuanId": 1,
+                    "keterangan": 2022
+                },
+                {
+                    "spesifikasiObjekId": 2,
+                    "satuanId": 1,
+                    "keterangan": "Hongkong"
+                },
+                {
+                    "spesifikasiObjekId": 3,
+                    "satuanId": 4,
+                    "keterangan": 33
+                },
+                {
+                    "spesifikasiObjekId": 4,
+                    "satuanId": 4,
+                    "keterangan": 7
+                }
+            ]
+        }
+    ],
+    "rincianNilaiGA": [
+        {
+            "namaObjek": "Tanah Depan",
+            "unit": 1,
+            "satuanId": 2,
+            "nilaiPasar": 4000,
+            "nilaiLikuidasi": 7000,
+            "kategori": "Tanah"
+        },
+        {
+            "namaObjek": "Rumah",
+            "unit": 2,
+            "satuanId": 1,
+            "nilaiPasar": 5000,
+            "nilaiLikuidasi": 8000,
+            "kategori": "Bangunan"
+        },
+        {
+            "namaObjek": "Carport",
+            "unit": 3,
+            "satuanId": 6,
+            "nilaiPasar": 6,
+            "nilaiLikuidasi": 9,
+            "kategori": "Sarana Pelengkap"
+        }
+    ],
+    "summaryRincianNilaiGA": {
+        "totalNilaiPasarObjek": 9006,
+        "totalNilaiLikuidasiObjek": 15009,
+        "pembulatanNilaiPasar": 8,
+        "pembulatanNilaiLikuidasi": 7,
+        "metodologiPenilaianKjppId": 2,
+        "marketabilityId": 2
     },
     "bangunan": {
         "pemanfaatan": "Rumah Tinggal"
@@ -9,175 +195,5 @@
     "djkn": {
         "waktu_ekspos": 7,
         "diskon_likuidasi": 0.4
-    },
-    "risiko": {
-        "marketability": 2
-    },
-    "legalitas": [
-        {
-            "jenis": "asd",
-            "nomor": 1101,
-            "nama_pemilik": "Putra",
-            "tgl_terbit": 43831,
-            "tgl_expired": 43831,
-            "luas_legalitas": 100,
-            "satuan": 2,
-            "keterangan": "Ket1"
-        },
-        {
-            "jenis": "asd",
-            "nomor": 1102,
-            "nama_pemilik": "Putra",
-            "tgl_terbit": 43832,
-            "tgl_expired": 43832,
-            "luas_legalitas": 200,
-            "satuan": 1,
-            "keterangan": "Ket2"
-        },
-        {
-            "jenis": "asd",
-            "nomor": 1103,
-            "nama_pemilik": "Karin",
-            "tgl_terbit": 43833,
-            "tgl_expired": 43833,
-            "luas_legalitas": 300,
-            "satuan": 4,
-            "keterangan": "Ket3"
-        },
-        {
-            "jenis": "asd",
-            "nomor": 1104,
-            "nama_pemilik": "Karin",
-            "tgl_terbit": 43834,
-            "tgl_expired": 43834,
-            "luas_legalitas": 400,
-            "satuan": 5,
-            "keterangan": "Ket4"
-        }
-    ],
-    "dp": [
-        {
-            "jenisobjek": 0,
-            "jenisdata": 0,
-            "tgl_penawaran": 0,
-            "harga": 0,
-            "discount": 0,
-            "nilaiobjek": 0,
-            "catatan": 0,
-            "spesifikasi": [
-                {
-                    "jenis": "Tahun Pembuatan",
-                    "satuan": "-",
-                    "value": 2020
-                },
-                {
-                    "jenis": "Negara",
-                    "satuan": "-",
-                    "value": "Indonesia"
-                },
-                {
-                    "jenis": "Panjang Kapal",
-                    "satuan": "m",
-                    "value": 11
-                },
-                {
-                    "jenis": "Lebar Kapal",
-                    "satuan": "m",
-                    "value": 9
-                }
-            ]
-        },
-        {
-            "jenisobjek": 0,
-            "jenisdata": 0,
-            "tgl_penawaran": 0,
-            "harga": 0,
-            "discount": 0,
-            "nilaiobjek": 0,
-            "catatan": 0,
-            "spesifikasi": [
-                {
-                    "jenis": "Tahun Pembuatan",
-                    "satuan": "-",
-                    "value": 2021
-                },
-                {
-                    "jenis": "Negara",
-                    "satuan": "-",
-                    "value": "Singapore"
-                },
-                {
-                    "jenis": "Panjang Kapal",
-                    "satuan": "m",
-                    "value": 22
-                },
-                {
-                    "jenis": "Lebar Kapal",
-                    "satuan": "m",
-                    "value": 8
-                }
-            ]
-        },
-        {
-            "jenisobjek": 0,
-            "jenisdata": 0,
-            "tgl_penawaran": 0,
-            "harga": 0,
-            "discount": 0,
-            "nilaiobjek": 0,
-            "catatan": 0,
-            "spesifikasi": [
-                {
-                    "jenis": "Tahun Pembuatan",
-                    "satuan": "-",
-                    "value": 2022
-                },
-                {
-                    "jenis": "Negara",
-                    "satuan": "-",
-                    "value": "Hongkong"
-                },
-                {
-                    "jenis": "Panjang Kapal",
-                    "satuan": "m",
-                    "value": 33
-                },
-                {
-                    "jenis": "Lebar Kapal",
-                    "satuan": "m",
-                    "value": 7
-                }
-            ]
-        }
-    ],
-    "rinciannilai": [
-        {
-            "kategori": "Tanah",
-            "objek": "Tanah",
-            "luas": 1,
-            "satuan": 2,
-            "nilaipasar": 4000,
-            "nilailikuidasi": 7000
-        },
-        {
-            "kategori": "Bangunan",
-            "objek": "Rumah",
-            "luas": 2,
-            "satuan": 1,
-            "nilaipasar": 5000,
-            "nilailikuidasi": 8000
-        },
-        {
-            "kategori": "Sarana Pelengkap",
-            "objek": "Carport",
-            "luas": 3,
-            "satuan": 6,
-            "nilaipasar": 6,
-            "nilailikuidasi": 9
-        }
-    ],
-    "kesimpulan": {
-        "pasartotal": 9006,
-        "likuidasitotal": 15009
     }
 }

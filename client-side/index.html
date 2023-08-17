@@ -124,10 +124,30 @@ const reformatChildObject = (obj) => {
                     });
                     
                 } else {
-                    if (!result[key]) {
-                        result[key] = {};
+                    const child2KeyVal = childObj[childKey];
+                    const child2KeyValArrObj = convertWrappedString(child2KeyVal);
+                    if (Array.isArray(child2KeyValArrObj)) {
+                        child2KeyValArrObj.forEach((child2KeyValArrObjItem, index2KeyValObjArr) => {
+                            if (!result[key]) {
+                                result[key] = [];
+                            }
+                            if (!result[key][index2KeyValObjArr]) {
+                                result[key][index2KeyValObjArr] = {};
+                            }
+                            if (!result[key][index2KeyValObjArr][childKey]) {
+                                result[key][index2KeyValObjArr][childKey] = [];
+                            }
+                            result[key][index2KeyValObjArr][childKey] = child2KeyValArrObjItem;
+                        });
+                    } else {
+                        if (!result[key]) {
+                            result[key] = {};
+                        }
+                        if (!result[key][childKey]) {
+                            result[key][childKey] = [];
+                        }
+                        result[key][childKey] = child2KeyValArrObj;
                     }
-                    result[key][childKey] = childObj[childKey];
                 }
             });
         } else {
