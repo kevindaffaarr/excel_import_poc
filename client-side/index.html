@@ -35,16 +35,14 @@
 const mergeObjects = (json) => {
     let result = {};
     json.forEach(item => {
-        Object.keys(item).forEach(key => {
-            if (!result[key]) {
-                result[key] = [];
-            }
-            result[key].push(item[key]);
+        Object.entries(item).forEach(([key, val]) => {
+            result[key] = result[key] || [];
+            result[key].push(val);
         });
     });
-    Object.keys(result).forEach(key => {
-        if (Array.isArray(result[key]) && result[key].length === 1) {
-            result[key] = result[key][0];
+    Object.entries(result).forEach(([key, val]) => {
+        if (Array.isArray(val) && val.length === 1) {
+            result[key] = val[0];
         }
     });
     return result;
@@ -76,85 +74,30 @@ const unflattenDotJson = (data) => {
  * {"risiko":{"banjir":1},{"kebakaran":2},{"gempa":3},{"tsunami":4}}
  * {"dp":[{"discount":1,"jenisdata":"penawaran","spesifikasi":[{"jenis":"panjang","satuan":"m","value":1},{"jenis":"lebar","satuan":"m","value":2}]},{"discount":2,"jenisdata":"transaksi","spesifikasi":[{"jenis":"panjang","satuan":"m","value":1},{"jenis":"lebar","satuan":"m","value":2}]},{"discount":3,"jenisdata":"penawaran","spesifikasi":[{"jenis":"panjang","satuan":"m","value":1},{"jenis":"lebar","satuan":"m","value":2}]}]}
  */
-const reformatChildObject = (obj) => {
-    const result = {};
+const reformatChildObject = (obj, keyArr) => {
+    let result = {};
 
-    Object.keys(obj).forEach(key => {
-        if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
-            const childObj = obj[key];
-            Object.keys(childObj).forEach(childKey => {
-                if (Array.isArray(childObj[childKey])) {
-                    const childArr = childObj[childKey];
-                    childArr.forEach((item, index) => {
-                        item = convertWrappedString(item);
-
-                        if (!result[key]) {
-                            result[key] = [];
-                        }
-                        if (!result[key][index]) {
-                            result[key][index] = {};
-                        }
-                        if (!result[key][index][childKey]) {
-                            result[key][index][childKey] = [];
-                        }
-                        result[key][index][childKey] = item;
-                    });
-                } else if (typeof childObj[childKey] === 'object') {
-                    const child2Obj = childObj[childKey];
-                    Object.keys(child2Obj).forEach(child2Key => {
-                        // asumsi: child2Obj[child2Key] selalu array karena max level 3, contoh: dp.spesifikasi.jenis
-                        child2Obj[child2Key].forEach((child2KeyVal, index2KeyValObj) => {
-                            const child2KeyValArrObj = convertWrappedString(child2KeyVal);
-                            child2KeyValArrObj.forEach((child2KeyValArrObjItem, index2KeyValObjArr) => {
-                                if (!result[key]) {
-                                    result[key] = [];
-                                }
-                                if (!result[key][index2KeyValObj]) {
-                                    result[key][index2KeyValObj] = {};
-                                }
-                                if (!result[key][index2KeyValObj][childKey]) {
-                                    result[key][index2KeyValObj][childKey] = [];
-                                }
-                                if (!result[key][index2KeyValObj][childKey][index2KeyValObjArr]) {
-                                    result[key][index2KeyValObj][childKey][index2KeyValObjArr] = {};
-                                }
-                                result[key][index2KeyValObj][childKey][index2KeyValObjArr][child2Key] = child2KeyValArrObjItem;
-                            });
-                        });
-                    });
-                    
-                } else {
-                    const child2KeyVal = childObj[childKey];
-                    const child2KeyValArrObj = convertWrappedString(child2KeyVal);
-                    if (Array.isArray(child2KeyValArrObj)) {
-                        child2KeyValArrObj.forEach((child2KeyValArrObjItem, index2KeyValObjArr) => {
-                            if (!result[key]) {
-                                result[key] = [];
-                            }
-                            if (!result[key][index2KeyValObjArr]) {
-                                result[key][index2KeyValObjArr] = {};
-                            }
-                            if (!result[key][index2KeyValObjArr][childKey]) {
-                                result[key][index2KeyValObjArr][childKey] = [];
-                            }
-                            result[key][index2KeyValObjArr][childKey] = child2KeyValArrObjItem;
-                        });
-                    } else {
-                        if (!result[key]) {
-                            result[key] = {};
-                        }
-                        if (!result[key][childKey]) {
-                            result[key][childKey] = [];
-                        }
-                        result[key][childKey] = child2KeyValArrObj;
-                    }
-                }
-            });
+    Object.entries(obj).forEach(([key, val]) => {
+        val = convertWrappedString(val);
+        if (typeof val === 'object' && !Array.isArray(val)) {
+            resultRecursive = reformatChildObject(val, [...keyArr, key]);
+            if (Array.isArray(result) && Array.isArray(resultRecursive)) {
+                result = result.map((item, index) => ({ ...item, ...resultRecursive[index] }));
+            } else {
+                result[key] = resultRecursive;
+            }
+        } else if (Array.isArray(val)) {
+            // if result is an empty object, make it empty array
+            if (Object.keys(result).length === 0) {
+                result = [];
+            }
+            const keysArr = [...keyArr, key];
+            keys = keyArr.slice(1);
+            result = reformatArray(val, result, keys, key);
         } else {
-            result[key] = obj[key];
+            result[key] = val;
         }
     });
-
     return result;
 };
 
@@ -168,13 +111,7 @@ const convertWrappedString = (str) => {
         // if value is an array, convert it to true array
         if (str.includes('array')) {
             const arr = str.replace('array(', '').replace(')', '').split(',');
-            str = arr.map(item => {
-                if (isNaN(Number(item))) {
-                    return item;
-                } else {
-                    return Number(item);
-                }
-            });
+            str = arr.map(item => isNaN(Number(item)) ? item : Number(item));
         }
         // else if value includes Date() like Date(43831), convert to date from excel's date number
         else if (str.includes('Date')) {
@@ -185,6 +122,43 @@ const convertWrappedString = (str) => {
         }
     }
     return str;
+}
+
+// Check the existence of nested keys
+const checkExistenceAndAssign = (obj, keyArr, value) => {
+    let currentObj = obj;
+    const lastIndex = keyArr.length - 1;
+    keyArr.forEach((key, index) => {
+        if (index === lastIndex) {
+            currentObj[key] = value;
+        } else {
+            currentObj[key] = currentObj[key] || (isNaN(Number(key)) ? [] : {});
+            currentObj = currentObj[key];
+        }
+    });
+
+    return obj;
+}
+
+const reformatArray = (arr, resultObj, keysStart, keysEnd) => {
+    if (Array.isArray(arr)) {
+        arr.forEach((item, index) => {
+            const val = convertWrappedString(item);
+            if (Array.isArray(val)) {
+                val.forEach((childVal, childIndex) => {
+                    checkExistenceAndAssign(resultObj, [index, ...keysStart, childIndex, keysEnd], childVal);
+                });
+            } else {
+                const keys = [...keysStart, index, keysEnd];
+                checkExistenceAndAssign(resultObj, keys, val);
+            }
+        });
+    } else {
+        const val = convertWrappedString(arr);
+        const keys = [...keysStart, keysEnd];
+        checkExistenceAndAssign(resultObj, keys, val);
+    }
+    return resultObj;
 }
 </script>
 
@@ -204,7 +178,7 @@ const convertWrappedString = (str) => {
             const xlData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
             const mergedData = mergeObjects(xlData);
             const unflattenData = unflattenDotJson(mergedData);
-            const reformatData = reformatChildObject(unflattenData);
+            const reformatData = reformatChildObject(unflattenData, []);
             resultPre.innerHTML = JSON.stringify(reformatData);
         };
     });
