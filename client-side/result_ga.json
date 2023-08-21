@@ -2,7 +2,7 @@
     "tipeImport": "GA",
     "capObject": {
         "kriteriaAgunanId": 1,
-        "jenisObjekId": 14
+        "jenisObjekId": 50
     },
     "dokumenLegalitasGA": [
         {
@@ -19,7 +19,6 @@
             "jenisLegalitas": "Sertifikat BKI",
             "nomorLegalitas": "555/BKI/2022",
             "tanggalTerbit": "2003-06-04T00:00:00.000Z",
-            "tanggalKadaluarsa": "2065-06-04T00:00:00.000Z",
             "jumlahUnit": 56,
             "satuanUnit": "m",
             "namaPemilik": "PT Onitsuka",
@@ -40,32 +39,32 @@
         {
             "spesifikasiObjekId": 2,
             "satuanId": 2,
-            "keterangan": 1
+            "keterangan": "a"
         },
         {
             "spesifikasiObjekId": 5,
             "satuanId": 5,
-            "keterangan": 2
+            "keterangan": "b"
         },
         {
             "spesifikasiObjekId": 6,
             "satuanId": 4,
-            "keterangan": 3
+            "keterangan": "c"
         },
         {
             "spesifikasiObjekId": 7,
             "satuanId": 7,
-            "keterangan": 4
+            "keterangan": "d"
         }
     ],
     "dataPasarGA": [
         {
-            "jenisObjekId": 13,
+            "jenisObjekId": 43,
             "jenisDataId": 2,
             "currencyId": 3,
             "tanggalTransaksi": "2055-12-05T00:00:00.000Z",
             "nominal": 20000,
-            "discount": 0.1,
+            "discount": 10,
             "indikasiNilai": 18000,
             "catatanObjek": 0,
             "spesifikasiObjek": [
@@ -75,29 +74,29 @@
                     "keterangan": 2020
                 },
                 {
-                    "spesifikasiObjekId": 2,
+                    "spesifikasiObjekId": 8,
                     "satuanId": 1,
                     "keterangan": "Indonesia"
                 },
                 {
-                    "spesifikasiObjekId": 3,
+                    "spesifikasiObjekId": 5,
                     "satuanId": 4,
                     "keterangan": 11
                 },
                 {
-                    "spesifikasiObjekId": 4,
+                    "spesifikasiObjekId": 7,
                     "satuanId": 4,
                     "keterangan": 9
                 }
             ]
         },
         {
-            "jenisObjekId": 15,
+            "jenisObjekId": 45,
             "jenisDataId": 1,
-            "currencyId": 5,
+            "currencyId": 2,
             "tanggalTransaksi": "2053-12-05T00:00:00.000Z",
             "nominal": 15000,
-            "discount": 0.2,
+            "discount": 20,
             "indikasiNilai": 12000,
             "catatanObjek": 0,
             "spesifikasiObjek": [
@@ -107,28 +106,29 @@
                     "keterangan": 2021
                 },
                 {
-                    "spesifikasiObjekId": 2,
+                    "spesifikasiObjekId": 8,
                     "satuanId": 1,
                     "keterangan": "Singapore"
                 },
                 {
-                    "spesifikasiObjekId": 3,
+                    "spesifikasiObjekId": 5,
                     "satuanId": 4,
                     "keterangan": 22
                 },
                 {
-                    "spesifikasiObjekId": 4,
+                    "spesifikasiObjekId": 7,
                     "satuanId": 4,
                     "keterangan": 8
                 }
             ]
         },
         {
-            "jenisObjekId": 17,
+            "jenisObjekId": 47,
             "jenisDataId": 2,
+            "currencyId": 5,
             "tanggalTransaksi": "2056-12-05T00:00:00.000Z",
             "nominal": 16000,
-            "discount": 0.3,
+            "discount": 30,
             "indikasiNilai": 11200,
             "catatanObjek": 0,
             "spesifikasiObjek": [
@@ -138,17 +138,17 @@
                     "keterangan": 2022
                 },
                 {
-                    "spesifikasiObjekId": 2,
+                    "spesifikasiObjekId": 8,
                     "satuanId": 1,
                     "keterangan": "Hongkong"
                 },
                 {
-                    "spesifikasiObjekId": 3,
+                    "spesifikasiObjekId": 5,
                     "satuanId": 4,
                     "keterangan": 33
                 },
                 {
-                    "spesifikasiObjekId": 4,
+                    "spesifikasiObjekId": 7,
                     "satuanId": 4,
                     "keterangan": 7
                 }
@@ -158,24 +158,24 @@
     "rincianNilaiGA": [
         {
             "namaObjek": "Tanah Depan",
-            "unit": 1,
-            "satuanId": 2,
+            "unit": 5,
+            "satuanId": 3,
             "nilaiPasar": 4000,
             "nilaiLikuidasi": 7000,
             "kategori": "Tanah"
         },
         {
             "namaObjek": "Rumah",
-            "unit": 2,
-            "satuanId": 1,
+            "unit": 66,
+            "satuanId": 2,
             "nilaiPasar": 5000,
             "nilaiLikuidasi": 8000,
             "kategori": "Bangunan"
         },
         {
             "namaObjek": "Carport",
-            "unit": 3,
-            "satuanId": 6,
+            "unit": 78,
+            "satuanId": 7,
             "nilaiPasar": 6,
             "nilaiLikuidasi": 9,
             "kategori": "Sarana Pelengkap"

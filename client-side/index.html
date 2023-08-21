@@ -111,7 +111,7 @@ const convertWrappedString = (str) => {
         // if value is an array, convert it to true array
         if (str.includes('array')) {
             const arr = str.replace('array(', '').replace(')', '').split(',');
-            str = arr.map(item => isNaN(Number(item)) ? item : Number(item));
+            str = arr.map(item => item === '' ? item : isNaN(Number(item)) ? item : Number(item));
         }
         // else if value includes Date() like Date(43831), convert to date from excel's date number
         else if (str.includes('Date')) {
@@ -140,6 +140,7 @@ const checkExistenceAndAssign = (obj, keyArr, value) => {
     return obj;
 }
 
+// Reformat array to object
 const reformatArray = (arr, resultObj, keysStart, keysEnd) => {
     if (Array.isArray(arr)) {
         arr.forEach((item, index) => {
@@ -160,6 +161,39 @@ const reformatArray = (arr, resultObj, keysStart, keysEnd) => {
     }
     return resultObj;
 }
+
+// Check does the value is just empty string from nested object and array
+// If the value is empty string, delete the key
+// If it is an empty object, delete the object
+// The function is recursive for evaluate nested object and array
+const deleteEmptyStringKey = (reformatData) => {
+    Object.entries(reformatData).forEach(([key, val]) => {
+        if (typeof val === 'object' && !Array.isArray(val)) {
+            deleteEmptyStringKey(val);
+            if (Object.keys(val).length === 0) {
+                delete reformatData[key];
+            }
+        } else if (Array.isArray(val)) {
+            val.forEach((item, index) => {
+                if (typeof item === 'object' && !Array.isArray(item)) {
+                    deleteEmptyStringKey(item);
+                    if (Object.keys(item).length === 0) {
+                        delete val[index];
+                    }
+                }
+            });
+            if (val.length === 0) {
+                delete reformatData[key];
+            }
+            reformatData[key] = val.filter(item => item !== undefined && item !== null);
+        } else if (val === '') {
+            delete reformatData[key];
+        }
+    });
+    
+    return reformatData;
+}
+
 </script>
 
 <script>
@@ -179,7 +213,8 @@ const reformatArray = (arr, resultObj, keysStart, keysEnd) => {
             const mergedData = mergeObjects(xlData);
             const unflattenData = unflattenDotJson(mergedData);
             const reformatData = reformatChildObject(unflattenData, []);
-            resultPre.innerHTML = JSON.stringify(reformatData);
+            const result = deleteEmptyStringKey(reformatData);
+            resultPre.innerHTML = JSON.stringify(result);
         };
     });
 </script>
